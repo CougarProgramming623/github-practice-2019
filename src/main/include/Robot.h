@@ -12,10 +12,19 @@
 #include <subsystems/DriveTrain.h>
 #include "AHRS.h"
 
+//eayfughiafewef rg eaifghwife
+
 class Robot : public frc::TimedRobot {
  public:
   void RobotInit() override;
 
+
+
+
+
+
+
+//awfsyuwFEIHWaefiuhwifuhwiuh
   void AutonomousInit() override;
   void AutonomousPeriodic() override;
 

@@ -22,6 +22,8 @@ void Robot::RobotInit() {
   }
 }
 
+
+//This is a very important comment! This will be merges into master soon!
 void Robot::AutonomousInit() {}
 void Robot::AutonomousPeriodic() {}
 
