@@ -10,7 +10,6 @@
 #include <frc/commands/Command.h>
 #include <frc/WPILib.h>
 #include "AHRS.h"
-#include "Robot.h"
 
 class Drive : public frc::Command {
  public:

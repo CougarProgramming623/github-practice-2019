@@ -6,30 +6,29 @@
 /*----------------------------------------------------------------------------*/
 
 #include "subsystems/DriveTrain.h"
+#include "commands/Drive.h"
+
+#include <frc/DriverStation.h>
 
 DriveTrain::DriveTrain() : Subsystem("DriveTrain") {
   //hey guys
   //we're not really using wheels
   //we're using akshath as a drivetrain
-  mLeftFrontMC.reset(new WPI_TalonSRX(1));
-  mRightFrontMC.reset(new WPI_TalonSRX(2));
-  mLeftRearMC.reset(new WPI_TalonSRX(3));
-  mRightRearMC.reset(new WPI_TalonSRX(4));
-  mMecanumDrive.reset(new frc::MecanumDrive(*mLeftFrontMC, *mRightFrontMC,
+	mLeftFrontMC.reset	(new WPI_TalonSRX(15));
+	mRightFrontMC.reset	(new WPI_TalonSRX( 4));
+	mLeftRearMC.reset	(new WPI_TalonSRX( 3));
+	mRightRearMC.reset	(new WPI_TalonSRX( 7));
+	mMecanumDrive.reset(new frc::MecanumDrive(*mLeftFrontMC, *mRightFrontMC,
     *mLeftRearMC, *mRightRearMC));
-  
-  try {
-    navx.reset(new AHRS(SPI::Port::kMXP));
-  } catch (std::exception &ex) {
-    std::string err = "Error instantiating navX MXP: ";
-    err += ex.what();
-    DriverStation::ReportError(err.c_str());
-  }
+	mMecanumDrive->SetExpiration(0.1);
+	mMecanumDrive->SetSafetyEnabled(false);
+	mMecanumDrive->SetMaxOutput(1.0);
+	DriverStation::ReportError("Creating Drive Train!");
 }
 
 void DriveTrain::InitDefaultCommand() {
   // Set the default command for a subsystem here.
-  // SetDefaultCommand(new MySpecialCommand());
+  SetDefaultCommand(new Drive());
 }
 
 void DriveTrain::fodDrive(double y, double x, double rot, double angle)
@@ -37,10 +36,7 @@ void DriveTrain::fodDrive(double y, double x, double rot, double angle)
   mMecanumDrive->DriveCartesian(y, x, rot, angle);
 }
 
-std::shared_ptr<AHRS> DriveTrain::getNavx()
-{
-  return navx;
-}
+
 
 
 // Put methods for controlling this subsystem

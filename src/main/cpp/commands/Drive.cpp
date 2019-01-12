@@ -6,26 +6,29 @@
 /*----------------------------------------------------------------------------*/
 
 #include "commands/Drive.h"
+#include "Robot.h"
 
 Drive::Drive() {
   // Use Requires() here to declare subsystem dependencies
   // eg. Requires(Robot::chassis.get());
   Requires(Robot::driveTrain.get());
   joystick.reset(new Joystick(0));
+  DriverStation::ReportError("Constructor");
 }
 
 // Called just before this Command runs the first time
 void Drive::Initialize() {
   y = x = rot = angle = 0;
+  DriverStation::ReportError("Initalize");
 }
 
 // Called repeatedly when this Command is scheduled to run
 void Drive::Execute() {
-  y = joystick->GetY();
-  x = joystick->GetX();
-  rot = joystick->GetX();
-  angle = Robot::driveTrain->getNavx().get()->GetAngle();
-
+	DriverStation::ReportError("Execute");
+	y = -joystick->GetY();
+	x = -joystick->GetX();
+	rot = joystick->GetZ();
+  angle = Robot::navx->GetYaw();
   Robot::driveTrain->fodDrive(y, x, rot, angle);
 }
 
