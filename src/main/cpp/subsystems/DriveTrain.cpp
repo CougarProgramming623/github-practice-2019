@@ -8,12 +8,16 @@
 #include "subsystems/DriveTrain.h"
 
 DriveTrain::DriveTrain() : Subsystem("DriveTrain") {
+  //hey guys
+  //we're not really using wheels
+  //we're using akshath as a drivetrain
   mLeftFrontMC.reset(new WPI_TalonSRX(1));
   mRightFrontMC.reset(new WPI_TalonSRX(2));
   mLeftRearMC.reset(new WPI_TalonSRX(3));
   mRightRearMC.reset(new WPI_TalonSRX(4));
   mMecanumDrive.reset(new frc::MecanumDrive(*mLeftFrontMC, *mRightFrontMC,
     *mLeftRearMC, *mRightRearMC));
+  
   try {
     navx.reset(new AHRS(SPI::Port::kMXP));
   } catch (std::exception &ex) {
@@ -27,6 +31,17 @@ void DriveTrain::InitDefaultCommand() {
   // Set the default command for a subsystem here.
   // SetDefaultCommand(new MySpecialCommand());
 }
+
+void DriveTrain::fodDrive(double y, double x, double rot, double angle)
+{
+  mMecanumDrive->DriveCartesian(y, x, rot, angle);
+}
+
+std::shared_ptr<AHRS> DriveTrain::getNavx()
+{
+  return navx;
+}
+
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
