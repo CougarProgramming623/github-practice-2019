@@ -7,7 +7,10 @@
 
 #include "Robot.h"
 
-void Robot::RobotInit() {}
+std::shared_ptr<DriveTrain> Robot::driveTrain;
+void Robot::RobotInit() {
+    driveTrain.reset(new DriveTrain());
+}
 
 void Robot::AutonomousInit() {}
 void Robot::AutonomousPeriodic() {}
