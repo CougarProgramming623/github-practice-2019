@@ -20,11 +20,9 @@ class DriveTrain : public frc::Subsystem {
   std::shared_ptr<WPI_TalonSRX> mLeftFrontMC, mRightFrontMC;
   std::shared_ptr<WPI_TalonSRX> mLeftRearMC, mRightRearMC;
   std::shared_ptr<frc::MecanumDrive> mMecanumDrive;
-  std::shared_ptr<AHRS> navx;
 
  public:
-  DriveTrain
-();
+  DriveTrain();
   void InitDefaultCommand() override;
   void fodDrive(double, double, double, double);
   std::shared_ptr<AHRS> getNavx();
