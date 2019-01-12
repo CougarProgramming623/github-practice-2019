@@ -8,6 +8,9 @@
 #include "subsystems/DriveTrain.h"
 
 DriveTrain::DriveTrain() : Subsystem("DriveTrain") {
+  //hey guys
+  //we're not really using wheels
+  //we're using akshath as a drivetrain
   mLeftFrontMC.reset(new WPI_TalonSRX(1));
   mRightFrontMC.reset(new WPI_TalonSRX(2));
   mLeftRearMC.reset(new WPI_TalonSRX(3));
