@@ -21,7 +21,7 @@ void Robot::RobotInit() {
     DriverStation::ReportError(err.c_str());
   }
 }
-
+//hello
 
 //This is a very important comment! This will be merges into master soon!
 void Robot::AutonomousInit() {}
