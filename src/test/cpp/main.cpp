@@ -2,6 +2,7 @@
 
 #include "gtest/gtest.h"
 
+//cheese is good
 int main(int argc, char** argv) {
   HAL_Initialize(500, 0);
   ::testing::InitGoogleTest(&argc, argv);
