@@ -4,7 +4,7 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-/* ya!
+/* yes!
 */
 #include "Robot.h"
 #include <frc/DriverStation.h>
