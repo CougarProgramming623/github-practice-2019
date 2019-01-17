@@ -19,6 +19,7 @@ void Robot::RobotInit() {
     std::string err = "Error instantiating navX MXP: ";
     err += ex.what();
     DriverStation::ReportError(err.c_str());
+    //test commit comment change
   }
 }
 
