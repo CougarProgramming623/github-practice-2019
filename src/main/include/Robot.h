@@ -8,6 +8,7 @@
 #pragma once
 
 #include <frc/TimedRobot.h>
+#include <subsystems/DriveTrain.h>
 
 class Robot : public frc::TimedRobot {
  public:
@@ -21,4 +22,5 @@ class Robot : public frc::TimedRobot {
 
   void TestInit() override;
   void TestPeriodic() override;
+  static std::shared_ptr<DriveTrain> drivetrain;
 };

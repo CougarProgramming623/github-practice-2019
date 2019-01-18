@@ -14,5 +14,8 @@
   "C_Cpp.default.configurationProvider": "vscode-wpilib",
   "wpilib.online": true,
   "editor.wrappingIndent": "indent",
-  "editor.rulers": [ 80 ],
+  "editor.rulers": [
+    80
+  ],
+  "C_Cpp.intelliSenseEngineFallback": "Enabled",
 }

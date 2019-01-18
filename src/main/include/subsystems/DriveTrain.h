@@ -7,23 +7,25 @@
 
 #pragma once
 
-#include "frc/WPILib.h"
-#include "ctre/Phoenix.h"
-#include "AHRS.h"
-
 #include <frc/commands/Subsystem.h>
+#include <frc/WPILib.h>
+#include <ctre/Phoenix.h>
+// #include <MecanumDrive.h>
+
 
 class DriveTrain : public frc::Subsystem {
  private:
   // It's desirable that everything possible under private except
   // for methods that implement subsystem capabilities
-  std::shared_ptr<WPI_TalonSRX> mLeftFrontMC, mRightFrontMC;
-  std::shared_ptr<WPI_TalonSRX> mLeftRearMC, mRightRearMC;
-  std::shared_ptr<frc::MecanumDrive> mMecanumDrive;
-  std::shared_ptr<AHRS> navx;
-
+  std::shared_ptr<WPI_TalonSRX> leftFront;
+  std::shared_ptr<WPI_TalonSRX> rightFront;
+  std::shared_ptr<WPI_TalonSRX> leftBack;
+  std::shared_ptr<WPI_TalonSRX> rightBack;
+  std::shared_ptr<frc::MecanumDrive> mech;
+  
  public:
-  DriveTrain
-();
+  DriveTrain();
   void InitDefaultCommand() override;
+  void drive(double,double,double,double);
+  static std::shared_ptr<frc::Joystick> joystick;
 };
