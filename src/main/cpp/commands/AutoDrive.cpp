@@ -5,38 +5,33 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/Drive.h"
+#include "commands/AutoDrive.h"
 #include "Robot.h"
 
-Drive::Drive() {
+AutoDrive::AutoDrive() {
   // Use Requires() here to declare subsystem dependencies
   // eg. Requires(Robot::chassis.get());
   Requires(Robot::driveTrain.get());
-  DriverStation::ReportError("Constructor");
 }
 
 // Called just before this Command runs the first time
-void Drive::Initialize() {
-  y = x = rot = angle = 0;
-  DriverStation::ReportError("Initalize");
+void AutoDrive::Initialize() {
+  SetTimeout(3);
 }
 
 // Called repeatedly when this Command is scheduled to run
-void Drive::Execute() {
-	DriverStation::ReportError("Execute");
-	y = -Robot::joystick->GetY();
-	x = -Robot::joystick->GetX();
-	rot = Robot::joystick->GetZ();
-  angle = Robot::navx->GetYaw();
-  Robot::driveTrain->fodDrive(y, x, rot, angle);
+void AutoDrive::Execute() {
+  Robot::driveTrain->fodDrive(0.5, 0.0, 0.0, Robot::navx->GetYaw());
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool Drive::IsFinished() { return false; }
+bool AutoDrive::IsFinished() { return IsTimedOut(); }
 
 // Called once after isFinished returns true
-void Drive::End() {}
+void AutoDrive::End() {
+  Robot::driveTrain->fodDrive(0.0, 0.0, 0.0, Robot::navx->GetYaw());
+}
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void Drive::Interrupted() {}
+void AutoDrive::Interrupted() {}

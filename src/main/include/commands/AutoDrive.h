@@ -8,17 +8,13 @@
 #pragma once
 
 #include <frc/commands/Command.h>
-#include <frc/WPILib.h>
-#include "AHRS.h"
 
-class Drive : public frc::Command {
+class AutoDrive : public frc::Command {
  public:
-  Drive();
+  AutoDrive();
   void Initialize() override;
   void Execute() override;
   bool IsFinished() override;
   void End() override;
   void Interrupted() override;
-  private:
-    double y, x, rot, angle;
 };

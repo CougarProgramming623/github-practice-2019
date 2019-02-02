@@ -3,13 +3,15 @@
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
-*/
+
 #include "Robot.h"
 #include <frc/DriverStation.h>
 
 
 std::shared_ptr<DriveTrain> Robot::driveTrain;
 AHRS *Robot::navx;
+Joystick* Robot::joystick;
+Joystick* Robot::buttonboard;
 void Robot::RobotInit() {
     driveTrain.reset(new DriveTrain());
 	  try {
@@ -19,6 +21,13 @@ void Robot::RobotInit() {
       err += ex.what();
       DriverStation::ReportError(err.c_str());
   }
+  joystick = new Joystick(0);
+  buttonboard = new Joystick(1);
+  bb1 = new JoystickButton(Robot::joystick, 1);
+  bb2 = new JoystickButton(Robot::joystick, 2);
+  bb3 = new JoystickButton(Robot::joystick, 3);
+  bb4 = new JoystickButton(Robot::joystick, 4);
+
 	navx->ZeroYaw();
 }
 //hello
