@@ -5,6 +5,7 @@
 /* the project.                                                               */
 
 #include "Robot.h"
+#include "commands/Movement.h"
 #include <frc/DriverStation.h>
 
 
@@ -24,6 +25,7 @@ void Robot::RobotInit() {
   joystick = new Joystick(0);
   buttonboard = new Joystick(1);
   bb1 = new JoystickButton(Robot::joystick, 1);
+  bb1->WhenPressed(new Movement());
   bb2 = new JoystickButton(Robot::joystick, 2);
   bb3 = new JoystickButton(Robot::joystick, 3);
   bb4 = new JoystickButton(Robot::joystick, 4);
