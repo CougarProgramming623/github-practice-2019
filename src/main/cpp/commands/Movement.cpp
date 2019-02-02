@@ -5,32 +5,34 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/AutoDrive.h"
 #include "Robot.h"
+#include "commands/Turn.h"
+#include "commands/AutoDrive.h"
+#include "commands/Strafe.h"
+#include "commands/Movement.h"
 
-AutoDrive::AutoDrive(int timeout) {
+Movement::Movement() {
   // Use Requires() here to declare subsystem dependencies
   // eg. Requires(Robot::chassis.get());
-  Requires(Robot::driveTrain.get());
-  SetTimeout(timeout);
+  AddSequential(new AutoDrive(1));
+  AddSequential(new Turn(Robot::navx->GetYaw() + 90.0));
+  AddSequential(new Strafe(1));
 }
 
 // Called just before this Command runs the first time
-void AutoDrive::Initialize() {}
+void Movement::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void AutoDrive::Execute() {
-  Robot::driveTrain->fodDrive(0.5, 0.0, 0.0, Robot::navx->GetYaw());
-}
+void Movement::Execute() {}
 
 // Make this return true when this Command no longer needs to run execute()
-bool AutoDrive::IsFinished() { return IsTimedOut(); }
+bool Movement::IsFinished() { return false; }
 
 // Called once after isFinished returns true
-void AutoDrive::End() {
-  Robot::driveTrain->fodDrive(0.0, 0.0, 0.0, Robot::navx->GetYaw());
+void Movement::End() {
+  Robot::driveTrain->fodDrive(0.0, 0.0, 0.0, 0.0);
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void AutoDrive::Interrupted() {}
+void Movement::Interrupted() {}

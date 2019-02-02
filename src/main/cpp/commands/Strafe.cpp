@@ -5,10 +5,10 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/AutoDrive.h"
+#include "commands/Strafe.h"
 #include "Robot.h"
 
-AutoDrive::AutoDrive(int timeout) {
+Strafe::Strafe(int timeout) {
   // Use Requires() here to declare subsystem dependencies
   // eg. Requires(Robot::chassis.get());
   Requires(Robot::driveTrain.get());
@@ -16,21 +16,21 @@ AutoDrive::AutoDrive(int timeout) {
 }
 
 // Called just before this Command runs the first time
-void AutoDrive::Initialize() {}
+void Strafe::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void AutoDrive::Execute() {
-  Robot::driveTrain->fodDrive(0.5, 0.0, 0.0, Robot::navx->GetYaw());
+void Strafe::Execute() {
+  Robot::driveTrain->fodDrive(0.0, 0.5, 0.0, Robot::navx->GetYaw());
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool AutoDrive::IsFinished() { return IsTimedOut(); }
+bool Strafe::IsFinished() { return IsTimedOut(); }
 
 // Called once after isFinished returns true
-void AutoDrive::End() {
+void Strafe::End() {
   Robot::driveTrain->fodDrive(0.0, 0.0, 0.0, Robot::navx->GetYaw());
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void AutoDrive::Interrupted() {}
+void Strafe::Interrupted() {}

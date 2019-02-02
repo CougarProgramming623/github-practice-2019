@@ -9,9 +9,9 @@
 
 #include <frc/commands/Command.h>
 
-class AutoDrive : public frc::Command {
+class Movement : public frc::CommandGroup {
  public:
-  AutoDrive(int);
+  Movement();
   void Initialize() override;
   void Execute() override;
   bool IsFinished() override;

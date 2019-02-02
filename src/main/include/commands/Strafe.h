@@ -9,9 +9,9 @@
 
 #include <frc/commands/Command.h>
 
-class AutoDrive : public frc::Command {
+class Strafe : public frc::Command {
  public:
-  AutoDrive(int);
+  Strafe(int);
   void Initialize() override;
   void Execute() override;
   bool IsFinished() override;

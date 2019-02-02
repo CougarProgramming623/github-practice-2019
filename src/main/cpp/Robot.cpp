@@ -6,6 +6,7 @@
 
 #include "Robot.h"
 #include <frc/DriverStation.h>
+#include "commands/Movement.h"
 
 
 std::shared_ptr<DriveTrain> Robot::driveTrain;
@@ -23,10 +24,11 @@ void Robot::RobotInit() {
   }
   joystick = new Joystick(0);
   buttonboard = new Joystick(1);
-  bb1 = new JoystickButton(Robot::joystick, 1);
-  bb2 = new JoystickButton(Robot::joystick, 2);
-  bb3 = new JoystickButton(Robot::joystick, 3);
-  bb4 = new JoystickButton(Robot::joystick, 4);
+  bb1 = new JoystickButton(Robot::buttonboard, 1);
+  bb1->WhenPressed(new Movement());
+  bb2 = new JoystickButton(Robot::buttonboard, 2);
+  bb3 = new JoystickButton(Robot::buttonboard, 3);
+  bb4 = new JoystickButton(Robot::buttonboard, 4);
 
 	navx->ZeroYaw();
 }
