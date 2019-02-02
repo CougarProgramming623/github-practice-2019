@@ -11,20 +11,14 @@
 #include <frc/WPILib.h>
 #include <subsystems/DriveTrain.h>
 #include "AHRS.h"
+#include "commands/Turn.h"
 
 //eayfughiafewef rg eaifghwife
 
 class Robot : public frc::TimedRobot {
  public:
   void RobotInit() override;
-
-
-
-
-
-
-
-//awfsyuwFEIHWaefiuhwifuhwiuh
+  void RobotPeriodic() override;
   void AutonomousInit() override;
   void AutonomousPeriodic() override;
 
@@ -34,5 +28,6 @@ class Robot : public frc::TimedRobot {
   void TestInit() override;
   void TestPeriodic() override;
   static std::shared_ptr<DriveTrain> driveTrain;
-  static std::shared_ptr<AHRS> navx;
+  static AHRS *navx;
+  std::unique_ptr<Command> autonomousCommand;
 };
