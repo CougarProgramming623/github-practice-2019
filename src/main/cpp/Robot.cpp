@@ -7,6 +7,7 @@
 #include "Robot.h"
 #include "commands/Movement.h"
 #include <frc/DriverStation.h>
+#include "commands/AutoDrive.h"
 
 
 std::shared_ptr<DriveTrain> Robot::driveTrain;
@@ -42,7 +43,7 @@ void Robot::RobotPeriodic()
 //This is a very important comment! This will be merges into master soon!
 void Robot::AutonomousInit() {
   Robot::navx->ZeroYaw();
-  autonomousCommand.reset(new Turn(90.0f));
+  autonomousCommand.reset(new AutoDrive(106, true));
   if (autonomousCommand)
 		autonomousCommand->Start();
 }

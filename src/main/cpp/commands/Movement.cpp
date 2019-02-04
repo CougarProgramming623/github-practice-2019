@@ -13,7 +13,7 @@ Movement::Movement() {
   // e.g. AddSequential(new Command1());
   //      AddSequential(new Command2());
   // these will run in order.
-  AddSequential(new AutoDrive());
+  AddSequential(new AutoDrive(106, false));
   AddSequential(new Turn(Robot::navx->GetYaw() + 90.0) );
   // To run multiple commands at the same time,
   // use AddParallel()

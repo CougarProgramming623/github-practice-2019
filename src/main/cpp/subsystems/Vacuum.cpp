@@ -5,20 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
+#include "subsystems/Vacuum.h"
 
-#include <frc/commands/Command.h>
+Vacuum::Vacuum() : Subsystem("Vacuum") {
+victor.reset(new WPI_VictorSPX(15));
 
-class AutoDrive : public frc::Command {
- public:
-  AutoDrive(double distance, bool isStrafe);
-  void Initialize() override;
-  void Execute();
-  bool IsFinished();
-  void End() override;
-  void Interrupted() override;
-  private:
-  bool isStrafing;
-  int currentTicks;
-  double m_distance;
-};
+
+}
+
+void Vacuum::InitDefaultCommand() {
+  // Set the default command for a subsystem here.
+  // SetDefaultCommand(new MySpecialCommand());
+}
+void Vacuum::SetVacuumSpeed( double speed) {
+victor->Set(speed);
+}
+// Put methods for controlling this subsystem
+// here. Call these from Commands.

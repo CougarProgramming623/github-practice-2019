@@ -7,22 +7,19 @@
 
 #pragma once
 
-#include "frc/WPILib.h"
-#include "ctre/Phoenix.h"
-#include "AHRS.h"
+#include <frc/WPILib.h>
+#include <ctre/Phoenix.h>
+
 
 #include <frc/commands/Subsystem.h>
 
-class DriveTrain : public frc::Subsystem {
+class Vacuum : public frc::Subsystem {
  private:
   // It's desirable that everything possible under private except
   // for methods that implement subsystem capabilities
-  std::shared_ptr<WPI_TalonSRX> mLeftFrontMC, mRightFrontMC;
-  std::shared_ptr<WPI_TalonSRX> mLeftRearMC, mRightRearMC;
-  std::shared_ptr<frc::MecanumDrive> mMecanumDrive;
+  std::shared_ptr<WPI_VictorSPX> victor;
  public:
-  DriveTrain();
+  Vacuum();
   void InitDefaultCommand() override;
-  int GetTicks();
-  void fodDrive(double, double, double, double);
+  void SetVacuumSpeed(double speed);
 };
