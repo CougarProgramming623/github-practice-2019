@@ -23,6 +23,7 @@ DriveTrain::DriveTrain() : Subsystem("DriveTrain") {
 	mMecanumDrive->SetExpiration(0.1);
 	mMecanumDrive->SetSafetyEnabled(false);
 	mMecanumDrive->SetMaxOutput(1.0);
+	mLeftRearMC->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 1, 5);
 	DriverStation::ReportError("Creating Drive Train!");
 }
 
@@ -34,6 +35,11 @@ void DriveTrain::InitDefaultCommand() {
 void DriveTrain::fodDrive(double y, double x, double rot, double angle)
 {
   mMecanumDrive->DriveCartesian(y, x, rot, angle);
+}
+
+int DriveTrain::getTicks()
+{
+	return abs(mLeftRearMC->GetSelectedSensorPosition(1));
 }
 
 

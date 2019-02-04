@@ -11,10 +11,14 @@
 
 class AutoDrive : public frc::Command {
  public:
-  AutoDrive();
+  AutoDrive(double, bool);
   void Initialize() override;
   void Execute() override;
   bool IsFinished() override;
   void End() override;
   void Interrupted() override;
+  private:
+  int currentTicks;
+  double m_distance;
+  bool isStraffing;
 };

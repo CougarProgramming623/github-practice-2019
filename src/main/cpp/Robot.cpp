@@ -6,6 +6,7 @@
 
 #include "Robot.h"
 #include <frc/DriverStation.h>
+#include "commands/AutoDrive.h"
 
 
 std::shared_ptr<DriveTrain> Robot::driveTrain;
@@ -19,7 +20,7 @@ void Robot::RobotInit() {
     } catch (std::exception &ex) {
       std::string err = "Error instantiating navX MXP: ";
       err += ex.what();
-      DriverStation::ReportError(err.c_str());
+      //DriverStation::ReportError(err.c_str());
   }
   joystick = new Joystick(0);
   buttonboard = new Joystick(1);
@@ -34,13 +35,13 @@ void Robot::RobotInit() {
 
 void Robot::RobotPeriodic()
 {
-    DriverStation::ReportError(std::to_string(navx->GetYaw()));
+   // DriverStation::ReportError(std::to_string(navx->GetYaw()));
 }
 
 //This is a very important comment! This will be merges into master soon!
 void Robot::AutonomousInit() {
   Robot::navx->ZeroYaw();
-  autonomousCommand.reset(new Turn(90.0f));
+  autonomousCommand.reset(new AutoDrive(106.5, true));
   if (autonomousCommand)
 		autonomousCommand->Start();
 }
@@ -51,8 +52,8 @@ void Robot::AutonomousPeriodic() {
 
 void Robot::TeleopInit() {}
 void Robot::TeleopPeriodic() {
-  DriverStation::ReportError(std::to_string(navx->GetYaw()));
-	DriverStation::ReportError("TeleopPeriodic");
+  //DriverStation::ReportError(std::to_string(navx->GetYaw()));
+	//DriverStation::ReportError("TeleopPeriodic");
 	frc::Scheduler::GetInstance()->Run();
 }
 
