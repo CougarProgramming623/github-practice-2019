@@ -12,7 +12,6 @@ Drive::Drive() {
   // Use Requires() here to declare subsystem dependencies
   // eg. Requires(Robot::chassis.get());
   Requires(Robot::driveTrain.get());
-  joystick.reset(new Joystick(0));
   DriverStation::ReportError("Constructor");
 }
 
@@ -25,9 +24,9 @@ void Drive::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void Drive::Execute() {
 	DriverStation::ReportError("Execute");
-	y = -joystick->GetY();
-	x = -joystick->GetX();
-	rot = joystick->GetZ();
+	y = -Robot::joystick->GetY();
+	x = -Robot::joystick->GetX();
+	rot = Robot::joystick->GetZ();
   angle = Robot::navx->GetYaw();
   Robot::driveTrain->fodDrive(y, x, rot, angle);
 }

@@ -30,4 +30,12 @@ class Robot : public frc::TimedRobot {
   static std::shared_ptr<DriveTrain> driveTrain;
   static AHRS *navx;
   std::unique_ptr<Command> autonomousCommand;
+  static Joystick* joystick;
+  static Joystick* buttonboard;
+  private:
+  JoystickButton* bb1;
+  JoystickButton* bb2;
+  JoystickButton* bb3;
+  JoystickButton* bb4;
+
 };
